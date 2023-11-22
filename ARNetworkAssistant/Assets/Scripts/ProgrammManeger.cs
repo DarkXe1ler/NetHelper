@@ -52,7 +52,7 @@ public class ProgrammManeger : MonoBehaviour
 
     public void CreateMyObject()
     {
-        if (planeMarkerPrefab.active == true)
+        if (planeMarkerPrefab.activeSelf == true)
         {
             Instantiate(gameObjectPrefab, planeMarkerPrefab.transform.position, gameObjectPrefab.transform.rotation);
         }
