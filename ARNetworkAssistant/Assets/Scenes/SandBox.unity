@@ -563,7 +563,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1831214631}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1357929297
@@ -936,7 +937,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1078448420}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1862348807
 GameObject:
@@ -1085,6 +1086,7 @@ GameObject:
   - component: {fileID: 1872868122}
   - component: {fileID: 1872868121}
   - component: {fileID: 1872868125}
+  - component: {fileID: 1872868126}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -1105,8 +1107,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planeMarkerPrefab: {fileID: 1812886070}
-  gameObjectPrefab: {fileID: 919132149155446097, guid: 825f5beee3dd086419f3e565ad9c95d9,
-    type: 3}
 --- !u!114 &1872868122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1167,6 +1167,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlanePrefab: {fileID: 0}
   m_DetectionMode: -1
+--- !u!114 &1872868126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872868120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d63ff4e0413544ba787ec39be34734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolCnt: 10
+  autoExpand: 0
+  laptop: {fileID: 1465037732479497207, guid: 307caf29aad456346959c92e17e9ca0a, type: 3}
+  planeMarkerPrefab: {fileID: 1812886070}
 --- !u!1 &1879144456
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,9 +1266,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1872868121}
-        m_TargetAssemblyTypeName: ProgrammManeger, Assembly-CSharp
-        m_MethodName: CreateMyObject
+      - m_Target: {fileID: 1872868126}
+        m_TargetAssemblyTypeName: LaptopPoolExample, Assembly-CSharp
+        m_MethodName: CreateLaptop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1306,7 +1322,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1872868124}
   - {fileID: 1078448420}
-  - {fileID: 1831214631}
   - {fileID: 1812886069}
   - {fileID: 190582203}
   - {fileID: 1699414465}

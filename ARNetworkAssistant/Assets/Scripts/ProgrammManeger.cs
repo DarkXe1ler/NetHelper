@@ -9,20 +9,6 @@ public class ProgrammManeger : MonoBehaviour
 
     [SerializeField]
     private GameObject planeMarkerPrefab;
-    [SerializeField]
-    private GameObject gameObjectPrefab;
-
-    public GameObject GameObjectPrefab
-    {
-        get => gameObjectPrefab;
-        set
-        {
-            if (gameObjectPrefab != value && value != null)
-            {
-                gameObjectPrefab = value;
-            }
-        }
-    }
 
     private ARRaycastManager ARRaycastManagerScript;
 
@@ -47,14 +33,6 @@ public class ProgrammManeger : MonoBehaviour
         {
             planeMarkerPrefab.transform.position = hits[0].pose.position;
             planeMarkerPrefab.SetActive(true);
-        }
-    }
-
-    public void CreateMyObject()
-    {
-        if (planeMarkerPrefab.activeSelf == true)
-        {
-            Instantiate(gameObjectPrefab, planeMarkerPrefab.transform.position, gameObjectPrefab.transform.rotation);
         }
     }
 }
