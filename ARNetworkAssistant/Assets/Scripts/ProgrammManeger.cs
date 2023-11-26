@@ -34,5 +34,9 @@ public class ProgrammManeger : MonoBehaviour
             planeMarkerPrefab.transform.position = hits[0].pose.position;
             planeMarkerPrefab.SetActive(true);
         }
+        else
+        {
+            planeMarkerPrefab.SetActive(false);
+        }
     }
 }
