@@ -15,7 +15,7 @@ public class ProgrammManeger : MonoBehaviour
     void Start()
     {
         ARRaycastManagerScript = FindAnyObjectByType<ARRaycastManager>();
-        planeMarkerPrefab.SetActive(false)
+        planeMarkerPrefab.SetActive(false);
     }
 
     
