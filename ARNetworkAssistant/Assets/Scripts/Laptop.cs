@@ -7,6 +7,8 @@ public class Laptop : MonoBehaviour
 {
     private TMP_Text ipAddressText; // Reference to the TextMeshPro component for displaying IP address
 
+    public TMP_Text IpAddressText => ipAddressText;
+
     private void Start()
     {
         // Get the TextMeshPro component from the child named "IPAddress"
@@ -41,7 +43,6 @@ public class Laptop : MonoBehaviour
 
     public void ChangeIPAddress(string newIPAddress)
     {
-        // You can add additional validation or processing logic here if needed
         ipAddressText.text = newIPAddress;
     }
 

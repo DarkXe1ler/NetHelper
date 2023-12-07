@@ -9,11 +9,14 @@ public class ProgrammManeger : MonoBehaviour
 {
     [SerializeField]
     private GameObject planeMarkerPrefab;
+    [SerializeField]
+    private Camera ARCamera;
+    [SerializeField]
+    private GameObject PanelChangeIP;
+    [SerializeField]
+    private InputPanel InputPanel;
 
-    [SerializeField]
-    private GameObject inputFieldPrefab; // Reference to the InputField prefab
-    [SerializeField]
-    private GameObject buttonPrefab; // Reference to the Button prefab
+    private Vector2 TouchPosition;
 
     private ARRaycastManager ARRaycastManagerScript;
 
@@ -21,34 +24,13 @@ public class ProgrammManeger : MonoBehaviour
     {
         ARRaycastManagerScript = FindAnyObjectByType<ARRaycastManager>();
         planeMarkerPrefab.SetActive(false);
-
-        // Hide the input field and button at the start
-        inputFieldPrefab.SetActive(false);
-        buttonPrefab.SetActive(false);
+        PanelChangeIP.SetActive(false);
     }
 
     void Update()
     {
         ShowMarker();
-
-        // Check for double tap
-        if (Input.touchCount == 2 && Input.GetTouch(0).phase == TouchPhase.Began && Input.GetTouch(1).phase == TouchPhase.Began)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-            RaycastHit hit;
-
-            // Perform a raycast to check if any object is hit
-            if (Physics.Raycast(ray, out hit))
-            {
-                Laptop laptop = hit.collider.GetComponent<Laptop>();
-
-                // Check if the hit object is a Laptop
-                if (laptop != null)
-                {
-                    ShowInputFieldAndButton(laptop);
-                }
-            }
-        }
+        TouchLapTop();
     }
 
     private void ShowMarker()
@@ -67,63 +49,36 @@ public class ProgrammManeger : MonoBehaviour
         }
     }
 
-    private void ShowInputFieldAndButton(Laptop laptop)
+    private void TouchLapTop()
     {
-        // Show the input field and button
-        inputFieldPrefab.SetActive(true);
-        buttonPrefab.SetActive(true);
-
-        // Set up the button click event
-        Button button = buttonPrefab.GetComponent<Button>();
-        button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(() => OnButtonClick(laptop));
-
-        // Position the input field and button near the laptop
-        inputFieldPrefab.transform.position = laptop.transform.position + new Vector3(0, 0.1f, 0);
-        buttonPrefab.transform.position = laptop.transform.position - new Vector3(0, 0.1f, 0);
-    }
-
-    private void OnButtonClick(Laptop laptop)
-    {
-        // Get the text from the input field
-        string newIPAddress = inputFieldPrefab.GetComponent<InputField>().text;
-
-        // Validate the IP address format
-        if (IsValidIPAddress(newIPAddress))
+        if (Input.touchCount > 0)
         {
-            // Change the IP address of the laptop
-            laptop.ChangeIPAddress(newIPAddress);
+            Touch touch = Input.GetTouch(0);
+            TouchPosition = touch.position;
 
-            // Clear the text in the input field
-            inputFieldPrefab.GetComponent<InputField>().text = "";
-
-            // Hide the input field and button
-            inputFieldPrefab.SetActive(false);
-            buttonPrefab.SetActive(false);
+            Ray ray = ARCamera.ScreenPointToRay(TouchPosition);
+            RaycastHit raycastHit;
+            if (Physics.Raycast(ray, out raycastHit))
+            {
+                if (raycastHit.collider.CompareTag("Laptop"))
+                {
+                    // Проверяем, что InputPanel не null
+                    if (InputPanel != null)
+                    {
+                        Laptop laptopComponent = raycastHit.collider.gameObject.GetComponent<Laptop>();
+                        if (laptopComponent != null)
+                        {
+                            // Избегаем NullReferenceException, проверяя InputPanel
+                            InputPanel.Laptop = laptopComponent;
+                            PanelChangeIP.SetActive(true);
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogError("InputPanel is null. Make sure it is properly initialized.");
+                    }
+                }
+            }
         }
-        else
-        {
-            // Highlight the input field in red for a second
-            StartCoroutine(HighlightInputField());
-        }
-    }
-
-    private bool IsValidIPAddress(string ipAddress)
-    {
-        // Implement your IP address validation logic here
-        // For simplicity, you can use regular expressions or any other method
-        // that suits your validation requirements.
-
-        // Example regular expression for IPv4 address validation:
-        string pattern = @"^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)$";
-        return System.Text.RegularExpressions.Regex.IsMatch(ipAddress, pattern);
-    }
-
-    private IEnumerator HighlightInputField()
-    {
-        // Highlight the input field in red for a second
-        inputFieldPrefab.GetComponent<Image>().color = Color.red;
-        yield return new WaitForSeconds(1.0f);
-        inputFieldPrefab.GetComponent<Image>().color = Color.white;
     }
 }
