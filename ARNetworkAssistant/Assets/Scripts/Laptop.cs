@@ -39,6 +39,12 @@ public class Laptop : MonoBehaviour
         return ipAddress;
     }
 
+    public void ChangeIPAddress(string newIPAddress)
+    {
+        // You can add additional validation or processing logic here if needed
+        ipAddressText.text = newIPAddress;
+    }
+
     private void Update()
     {
         // You can add any additional update logic here if needed

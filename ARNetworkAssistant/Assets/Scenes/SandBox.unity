@@ -136,9 +136,10 @@ GameObject:
   - component: {fileID: 190582201}
   - component: {fileID: 190582200}
   - component: {fileID: 190582204}
+  - component: {fileID: 190582205}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: NewIP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -237,6 +238,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67ed9c4a3ae4cbb40af9faa10654725b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &190582205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190582199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc54086ba26b14b4aae5c81d5fa568dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &539152304
@@ -1143,6 +1156,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planeMarkerPrefab: {fileID: 1812886070}
+  inputFieldPrefab: {fileID: 0}
+  buttonPrefab: {fileID: 0}
 --- !u!114 &1872868122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1217,8 +1232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolCnt: 10
   autoExpand: 0
-  laptopPrefab: {fileID: 6006105146680224048, guid: 307caf29aad456346959c92e17e9ca0a,
-    type: 3}
+  laptop: {fileID: 6006105146680224048, guid: 307caf29aad456346959c92e17e9ca0a, type: 3}
   planeMarkerPrefab: {fileID: 1812886070}
 --- !u!1 &1879144456
 GameObject:
@@ -1256,7 +1270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 4.815, y: 0}
+  m_AnchoredPosition: {x: 4.815, y: 16}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1879144458
