@@ -12,21 +12,29 @@ public class Laptop : MonoBehaviour
         ipAddressText = GetComponentInChildren<TMP_Text>(true);
     }
 
-    public void SetIPAddress(string ipAddress)
+    private void Start()
     {
+        GenerateAndSetIPAddress();
+    }
+
+    private void Update()
+    {
+        // Add any additional update logic if needed
+    }
+
+    private void GenerateAndSetIPAddress()
+    {
+        string ipAddress = GenerateIPAddress();
+
         if (ipAddressText != null)
         {
             ipAddressText.text = ipAddress;
         }
     }
 
-    private void Start()
+    private string GenerateIPAddress()
     {
-        
-    }
-
-    private void Update()
-    {
-        
+        string ipAddress = $"{Random.Range(1, 256)}.{Random.Range(1, 256)}.{Random.Range(1, 256)}.{Random.Range(1, 256)}";
+        return ipAddress;
     }
 }
