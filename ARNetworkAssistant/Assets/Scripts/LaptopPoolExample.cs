@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -19,17 +18,18 @@ public class LaptopPoolExample : MonoBehaviour
 
     private void Start()
     {
-        pool = new PoolMono<Laptop>(laptopPrefab, poolCnt, transform);
+        pool = new PoolMono<Laptop> (laptopPrefab, poolCnt,transform);
         pool.autoExpand = autoExpand;
 
-        CreateLaptops();
+        GenerateAndSetIPAddresses();
     }
-    public void CreateLaptops()
+    private void GenerateAndSetIPAddresses()
     {
         foreach (var laptop in pool.GetPool())
         {
-            string ipAddress = laptop.GetComponentInChildren<TMP_Text>(true).text;
-            Debug.Log($"Laptop IP Address: {ipAddress}");
+            string ipAddress = GenerateIPAddress();
+
+            laptop.SetIPAddress(ipAddress);
         }
     }
     public void CreateLaptop()
