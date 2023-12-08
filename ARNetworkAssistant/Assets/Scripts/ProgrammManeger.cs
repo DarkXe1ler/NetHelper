@@ -16,9 +16,11 @@ public class ProgrammManeger : MonoBehaviour
     [SerializeField]
     private InputPanel InputPanel;
 
-    private Vector2 TouchPosition;
-
     private ARRaycastManager ARRaycastManagerScript;
+
+    private int touchCnt = 0;
+    private float lastTouchTime = 0f;
+    private float doubleTapDelay = 0.2f;
 
     void Start()
     {
@@ -30,7 +32,7 @@ public class ProgrammManeger : MonoBehaviour
     void Update()
     {
         ShowMarker();
-        TouchLapTop();
+        TuchCount();
     }
 
     private void ShowMarker()
@@ -49,32 +51,49 @@ public class ProgrammManeger : MonoBehaviour
         }
     }
 
-    private void TouchLapTop()
+    private void TuchCount()
     {
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            TouchPosition = touch.position;
 
-            Ray ray = ARCamera.ScreenPointToRay(TouchPosition);
-            RaycastHit raycastHit;
-            if (Physics.Raycast(ray, out raycastHit))
+            if (touch.phase == TouchPhase.Began)
             {
-                if (raycastHit.collider.CompareTag("Laptop"))
+                if (Time.time - lastTouchTime < doubleTapDelay && touchCnt == 1)
                 {
-                    if (InputPanel != null)
+                    TouchLapTop(touch.position);
+                    touchCnt = 0;
+                }
+                else
+                {
+                    // Это первое касание
+                    touchCnt = 1;
+                    lastTouchTime = Time.time;
+                }
+            }
+        }
+    }
+
+    private void TouchLapTop(Vector2 touchPosition)
+    {
+        Ray ray = ARCamera.ScreenPointToRay(touchPosition);
+        RaycastHit raycastHit;
+        if (Physics.Raycast(ray, out raycastHit))
+        {
+            if (raycastHit.collider.CompareTag("Laptop"))
+            {
+                if (InputPanel != null)
+                {
+                    Laptop laptopComponent = raycastHit.collider.gameObject.GetComponent<Laptop>();
+                    if (laptopComponent != null)
                     {
-                        Laptop laptopComponent = raycastHit.collider.gameObject.GetComponent<Laptop>();
-                        if (laptopComponent != null)
-                        {
-                            InputPanel.Laptop = laptopComponent;
-                            PanelChangeIP.SetActive(true);
-                        }
+                        InputPanel.Laptop = laptopComponent;
+                        PanelChangeIP.SetActive(true);
                     }
-                    else
-                    {
-                        Debug.LogError("InputPanel is null. Make sure it is properly initialized.");
-                    }
+                }
+                else
+                {
+                    Debug.LogError("InputPanel is null. Make sure it is properly initialized.");
                 }
             }
         }
