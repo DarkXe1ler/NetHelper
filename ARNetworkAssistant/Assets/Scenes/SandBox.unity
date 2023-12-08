@@ -2102,6 +2102,7 @@ MonoBehaviour:
   autoExpand: 0
   laptop: {fileID: 6006105146680224048, guid: 307caf29aad456346959c92e17e9ca0a, type: 3}
   planeMarkerPrefab: {fileID: 1812886070}
+  mainCamera: {fileID: 1357929298}
 --- !u!1 &1879144456
 GameObject:
   m_ObjectHideFlags: 0

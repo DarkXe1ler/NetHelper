@@ -12,6 +12,10 @@ public class LaptopPoolExample : MonoBehaviour
     private Laptop laptop;
     [SerializeField]
     private GameObject planeMarkerPrefab;
+    [SerializeField]
+    private Camera mainCamera;
+
+
     private PoolMono<Laptop> pool;
     private void Start()
     {
@@ -24,6 +28,8 @@ public class LaptopPoolExample : MonoBehaviour
         {
             var pos = planeMarkerPrefab.transform.position;
             var freeLaptop = pool.GetFreeElement();
+            freeLaptop.transform.LookAt(mainCamera.transform);
+            freeLaptop.transform.eulerAngles = new Vector3(freeLaptop.transform.eulerAngles.x, 0, -90);
             freeLaptop.transform.position = pos;
             planeMarkerPrefab.SetActive(true);
         }
