@@ -62,13 +62,11 @@ public class ProgrammManeger : MonoBehaviour
             {
                 if (raycastHit.collider.CompareTag("Laptop"))
                 {
-                    // Проверяем, что InputPanel не null
                     if (InputPanel != null)
                     {
                         Laptop laptopComponent = raycastHit.collider.gameObject.GetComponent<Laptop>();
                         if (laptopComponent != null)
                         {
-                            // Избегаем NullReferenceException, проверяя InputPanel
                             InputPanel.Laptop = laptopComponent;
                             PanelChangeIP.SetActive(true);
                         }
