@@ -6,18 +6,29 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    public void Next()
+    [SerializeField]
+    private GameObject MenuPanel;
+    [SerializeField]
+    private GameObject TaskPanel;
+
+
+    public void Next() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+    public void OpenSendBox() => SceneManager.LoadScene("SandBox");
+
+    public void OpenMainMenu() => SceneManager.LoadScene("MainMenu");
+
+    public void GoFirstTask() => SceneManager.LoadScene("FirstTask");
+
+    public void OpenTaskPanel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        MenuPanel.SetActive(false);
+        TaskPanel.SetActive(true);
     }
 
-    public void OpenSendBox()
+    public void CloseTaskPanel() 
     {
-        SceneManager.LoadScene("SandBox");
-    }
-
-    public void OpenMainMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
+        MenuPanel.SetActive(true);
+        TaskPanel.SetActive(false);
     }
 }
