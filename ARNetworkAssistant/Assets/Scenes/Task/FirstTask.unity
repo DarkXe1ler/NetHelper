@@ -1324,6 +1324,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlaneMarkerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 3539075904262002408, guid: c5422fed6c9c35240a7efc54e2f24c49,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5885506243852344455, guid: c5422fed6c9c35240a7efc54e2f24c49,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1704,7 +1709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d63ff4e0413544ba787ec39be34734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolLaptopCnt: 3
+  poolLaptopCnt: 6
   poolModemCnt: 1
   autoExpand: 0
   laptop: {fileID: 6006105146680224048, guid: 307caf29aad456346959c92e17e9ca0a, type: 3}

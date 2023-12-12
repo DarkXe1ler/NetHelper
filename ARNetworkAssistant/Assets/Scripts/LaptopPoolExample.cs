@@ -48,6 +48,6 @@ public class LaptopPoolExample : MonoBehaviour
         var pos = planeMarkerPrefab.transform.position;
         obj.transform.position = pos;
         obj.transform.LookAt(mainCamera.transform);
-        obj.transform.eulerAngles = new Vector3(obj.transform.eulerAngles.x, 0, 0);
+        obj.transform.eulerAngles = new Vector3(0, -obj.transform.eulerAngles.y, 0);
     }
 }
