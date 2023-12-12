@@ -11,22 +11,24 @@ public class FirstTaskManeger : MonoBehaviour
     [SerializeField]
     private int maxLines = 6;
     [SerializeField]
-    private GameObject 
-
-    private void Start()
-    {
-        
-    }
+    private Line linePrefab;
 
     private void Update()
     {
         modems = FindAnyObjectByType<Modem>();
         modems.gameObject.transform.GetComponent<IPAdrees>().ChangeIPAddress("");
         laptops = FindObjectsOfType<Laptop>();
-        foreach(Laptop l in laptops)
+        foreach(Laptop laptop in laptops)
         {
-            l.gameObject.transform.GetComponent<IPAdrees>().ChangeIPAddress("");
+            if(laptop.Port == null)
+            {
+                Line line = Instantiate(linePrefab,transform);
+                line.gameObject.SetActive(false);
+                line.StretchLine(modems.transform, laptop.transform);
+                laptop.Port = line;
+                line.gameObject.SetActive(true);
+            }
+            laptop.gameObject.transform.GetComponent<IPAdrees>().ChangeIPAddress("");
         }
-
     }
 }

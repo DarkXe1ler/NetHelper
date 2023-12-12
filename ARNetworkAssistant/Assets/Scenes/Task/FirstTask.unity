@@ -1802,6 +1802,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89484970f49788d42ba74205515b17be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modems: {fileID: 0}
+  laptops: []
+  maxLines: 6
+  linePrefab: {fileID: 5370139501817327288, guid: 8f3ac641f17a5c341a761b6f5715f7e3,
+    type: 3}
 --- !u!1 &1895677744
 GameObject:
   m_ObjectHideFlags: 0
