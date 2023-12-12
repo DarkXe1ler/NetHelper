@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
+public enum Tag{
+
+}
 public class SkriptSetIp : MonoBehaviour
 {
     [SerializeField]
@@ -13,7 +16,6 @@ public class SkriptSetIp : MonoBehaviour
     [SerializeField]
     private InputPanel InputPanel;
 
-    private ARRaycastManager ARRaycastManagerScript;
 
     private int touchCnt = 0;
     private float lastTouchTime = 0f;
@@ -21,8 +23,7 @@ public class SkriptSetIp : MonoBehaviour
 
     void Start()
     {
-        ARRaycastManagerScript = FindAnyObjectByType<ARRaycastManager>();
-        PanelChangeIP.SetActive(false);
+
     }
 
     void Update()
@@ -59,14 +60,14 @@ public class SkriptSetIp : MonoBehaviour
         RaycastHit raycastHit;
         if (Physics.Raycast(ray, out raycastHit))
         {
-            if (raycastHit.collider.CompareTag("Laptop"))
+            if (raycastHit.collider.CompareTag("SetIp"))
             {
                 if (InputPanel != null)
                 {
-                    Laptop laptopComponent = raycastHit.collider.gameObject.GetComponent<Laptop>();
+                    IPAdrees laptopComponent = raycastHit.collider.gameObject.GetComponent<IPAdrees>();
                     if (laptopComponent != null)
                     {
-                        InputPanel.Laptop = laptopComponent;
+                        InputPanel.IPAdrees = laptopComponent;
                         PanelChangeIP.SetActive(true);
                     }
                 }
