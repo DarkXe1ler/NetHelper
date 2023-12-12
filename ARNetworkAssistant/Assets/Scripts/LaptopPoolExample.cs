@@ -33,24 +33,21 @@ public class LaptopPoolExample : MonoBehaviour
 
     public void CreateLaptop()
     {
-        CreateObj(poolLaptop.GetFreeElement());
+        if (planeMarkerPrefab.activeSelf)
+            PlaceObj(poolLaptop.GetFreeElement());
     }
 
     public void CreateModem()
     {
-        CreateObj(poolModem.GetFreeElement());
+        if (planeMarkerPrefab.activeSelf)
+            PlaceObj(poolModem.GetFreeElement());
     }
 
-    private void CreateObj(MonoBehaviour obj)
+    private void PlaceObj(MonoBehaviour obj)
     {
-        if (planeMarkerPrefab.activeSelf)
-        {
-            var pos = planeMarkerPrefab.transform.position;
-            //var freeLaptop = poolLaptop.GetFreeElement();
-            obj.transform.LookAt(mainCamera.transform);
-            obj.transform.eulerAngles = new Vector3(obj.transform.eulerAngles.x, 0, 0);
-            obj.transform.position = pos;
-            planeMarkerPrefab.SetActive(true);
-        }
+        var pos = planeMarkerPrefab.transform.position;
+        obj.transform.position = pos;
+        obj.transform.LookAt(mainCamera.transform);
+        obj.transform.eulerAngles = new Vector3(obj.transform.eulerAngles.x, 0, 0);
     }
 }
