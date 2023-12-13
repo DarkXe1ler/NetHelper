@@ -19,6 +19,8 @@ public class Menu : MonoBehaviour
     public void OpenMainMenu() => SceneManager.LoadScene("MainMenu");
 
     public void GoFirstTask() => SceneManager.LoadScene("FirstTask");
+    public void GoSecondTask() => SceneManager.LoadScene("SecondTask");
+    public void GoThirdTask() => SceneManager.LoadScene("ThirdTask");
 
     public void OpenTaskPanel()
     {
