@@ -1710,7 +1710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolLaptopCnt: 6
-  poolModemCnt: 1
+  poolModemCnt: 0
   autoExpand: 0
   laptop: {fileID: 6006105146680224048, guid: 307caf29aad456346959c92e17e9ca0a, type: 3}
   modem: {fileID: 758065139271491108, guid: 9e9f89e28ce2b5b4eb2a1147a6e26806, type: 3}
@@ -1888,7 +1888,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1319233539}
   m_HandleRect: {fileID: 1319233538}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
