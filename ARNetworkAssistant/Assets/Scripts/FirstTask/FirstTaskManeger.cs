@@ -32,8 +32,6 @@ public class FirstTaskManeger : MonoBehaviour
             Line line = Instantiate(linePrefab, transform);
             line.gameObject.SetActive(false);
             line.StretchLine(currentLaptop.transform, nextLaptop.transform);
-            currentLaptop.PortNext = line;
-            nextLaptop.PortPrevious = line;
             line.gameObject.SetActive(true);
         }
     }
