@@ -6,16 +6,30 @@ using TMPro;
 public class Laptop : MonoBehaviour
 {
     [SerializeField]
-    private Line port;
+    private Line portNext;
+    [SerializeField]
+    private Line portPrevious;
 
-    public Line Port
+    public Line PortNext
     {
-        get => port;
+        get => portNext;
         set
         {
-            if (port != value)
+            if (portNext != value)
             {
-                port = value;
+                portNext = value;
+            }
+        }
+    }
+
+    public Line PortPrevious
+    {
+        get => portPrevious;
+        set
+        {
+            if(portNext != value)
+            {
+                portPrevious = value;
             }
         }
     }
