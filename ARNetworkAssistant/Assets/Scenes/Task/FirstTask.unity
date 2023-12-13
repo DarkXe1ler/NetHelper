@@ -1725,7 +1725,7 @@ Transform:
   m_GameObject: {fileID: 1835083121}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.06, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1802,7 +1802,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89484970f49788d42ba74205515b17be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modems: {fileID: 0}
   laptops: []
   maxLines: 6
   linePrefab: {fileID: 5370139501817327288, guid: 8f3ac641f17a5c341a761b6f5715f7e3,
@@ -1889,7 +1888,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1319233539}
   m_HandleRect: {fileID: 1319233538}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

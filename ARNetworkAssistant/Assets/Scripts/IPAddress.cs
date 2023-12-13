@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class IPAdrees : MonoBehaviour
+public class IPAddress : MonoBehaviour
 {
     private TMP_Text ipAddressText;
 

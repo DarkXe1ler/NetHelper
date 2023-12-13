@@ -11,10 +11,10 @@ public class InputPanel : MonoBehaviour
     private GameObject panelChangetIp;
 
 
-    private IPAdrees currentObj;
+    private IPAddress currentObj;
     private TMP_InputField inputField;
 
-    public IPAdrees IPAdrees
+    public IPAddress IPAdrees
     {
         get => currentObj;
         set

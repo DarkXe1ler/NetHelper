@@ -11,42 +11,30 @@ public class FirstTaskManeger : MonoBehaviour
     [SerializeField]
     private Line linePrefab;
 
-    private Laptop lastLaptop;
-
     private void Update()
     {
         laptops = FindObjectsOfType<Laptop>();
-        foreach(Laptop laptop in laptops)
-            laptop.gameObject.transform.GetComponent<IPAdrees>().ChangeIPAddress("");
+        foreach (Laptop laptop in laptops)
+            laptop.gameObject.transform.GetComponent<IPAddress>().ChangeIPAddress("");
+
+        // Удаляем все ранее созданные линии
+        var existingLines = FindObjectsOfType<Line>();
+        foreach (var line in existingLines)
+        {
+            Destroy(line.gameObject);
+        }
+
         for (int i = 0; i < laptops.Length; i++)
         {
-            if (laptops[i].PortNext != null)
-            {
-                lastLaptop = laptops[i];
-                continue;
-            }
-            if (laptops[i].PortPrevious == null && i != 0)
-            {
-                Line line = Instantiate(linePrefab, transform);
-                line.gameObject.SetActive(false);
-                line.StretchLine(laptops[i].transform, lastLaptop.transform);
-                lastLaptop.PortNext = line;
-                laptops[i].PortPrevious = line;
-                line.gameObject.SetActive(true);
-                lastLaptop = laptops[i];
-                break;
-            }
-            if (laptops[i] == laptops[laptops.Length - 1] && laptops.Length == maxLines)
-            {
-                Line line = Instantiate (linePrefab, transform);
-                line.gameObject.SetActive(false);
-                line.StretchLine(laptops[i].transform, laptops[0].transform);
-                laptops[0].PortPrevious = laptops[i].PortNext = line;
-                line.gameObject.SetActive(true);
-                lastLaptop = laptops[i];
-                break;
-            }
-            lastLaptop = laptops[i];
+            Laptop currentLaptop = laptops[i];
+            Laptop nextLaptop = (i < laptops.Length - 1) ? laptops[i + 1] : laptops[0]; // Если текущий не последний, то следующий - следующий в массиве, иначе - первый
+
+            Line line = Instantiate(linePrefab, transform);
+            line.gameObject.SetActive(false);
+            line.StretchLine(currentLaptop.transform, nextLaptop.transform);
+            currentLaptop.PortNext = line;
+            nextLaptop.PortPrevious = line;
+            line.gameObject.SetActive(true);
         }
     }
 }

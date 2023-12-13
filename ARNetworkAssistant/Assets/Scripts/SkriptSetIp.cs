@@ -64,7 +64,7 @@ public class SkriptSetIp : MonoBehaviour
             {
                 if (InputPanel != null)
                 {
-                    IPAdrees laptopComponent = raycastHit.collider.gameObject.GetComponent<IPAdrees>();
+                    IPAddress laptopComponent = raycastHit.collider.gameObject.GetComponent<IPAddress>();
                     if (laptopComponent != null)
                     {
                         InputPanel.IPAdrees = laptopComponent;
