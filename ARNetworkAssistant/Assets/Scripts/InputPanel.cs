@@ -11,18 +11,18 @@ public class InputPanel : MonoBehaviour
     private GameObject panelChangetIp;
 
 
-    private Laptop currentLaptop;
+    private IPAddress currentObj;
     private TMP_InputField inputField;
 
-    public Laptop Laptop
+    public IPAddress IPAdrees
     {
-        get => currentLaptop;
+        get => currentObj;
         set
         {
-            if (currentLaptop != value)
+            if (currentObj != value)
             {
-                currentLaptop = value;
-                inputField.text = currentLaptop.IpAddressText.text;
+                currentObj = value;
+                inputField.text = currentObj.IpAddressText.text;
             }
         }
     }
@@ -48,7 +48,7 @@ public class InputPanel : MonoBehaviour
         //    return;
         //}
 
-        currentLaptop.ChangeIPAddress(ipAddress);
+        currentObj.ChangeIPAddress(ipAddress);
         panelChangetIp.SetActive(false);
     }
 

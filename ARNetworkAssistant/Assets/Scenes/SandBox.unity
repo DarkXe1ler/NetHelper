@@ -374,6 +374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ed9c4a3ae4cbb40af9faa10654725b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MenuPanel: {fileID: 0}
+  TaskPanel: {fileID: 0}
 --- !u!114 &190582205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2003,6 +2005,7 @@ GameObject:
   - component: {fileID: 1872868125}
   - component: {fileID: 1872868126}
   - component: {fileID: 1872868121}
+  - component: {fileID: 1872868127}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -2024,8 +2027,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planeMarkerPrefab: {fileID: 1812886070}
   ARCamera: {fileID: 1357929298}
-  PanelChangeIP: {fileID: 715650201}
-  InputPanel: {fileID: 431452074}
 --- !u!114 &1872868122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2103,6 +2104,21 @@ MonoBehaviour:
   laptop: {fileID: 6006105146680224048, guid: 307caf29aad456346959c92e17e9ca0a, type: 3}
   planeMarkerPrefab: {fileID: 1812886070}
   mainCamera: {fileID: 1357929298}
+--- !u!114 &1872868127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872868120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e76aa65eba5c140ac50868d6c2bde8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ARCamera: {fileID: 1357929298}
+  PanelChangeIP: {fileID: 715650201}
+  InputPanel: {fileID: 431452074}
 --- !u!1 &1879144456
 GameObject:
   m_ObjectHideFlags: 0

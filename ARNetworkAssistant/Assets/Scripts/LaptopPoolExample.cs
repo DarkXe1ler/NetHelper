@@ -5,33 +5,49 @@ using UnityEngine.UIElements;
 public class LaptopPoolExample : MonoBehaviour
 {
     [SerializeField]
-    private int poolCnt = 3;
+    private int poolLaptopCnt = 3;
+    [SerializeField]
+    private int poolModemCnt = 1;
     [SerializeField]
     private bool autoExpand = false;
     [SerializeField]
     private Laptop laptop;
+    [SerializeField]
+    private Modem modem;
     [SerializeField]
     private GameObject planeMarkerPrefab;
     [SerializeField]
     private Camera mainCamera;
 
 
-    private PoolMono<Laptop> pool;
+    private PoolMono<Laptop> poolLaptop;
+    private PoolMono<Modem> poolModem;
+
     private void Start()
     {
-        pool = new PoolMono<Laptop> (laptop,poolCnt,transform);
-        pool.autoExpand = autoExpand;
+        poolLaptop = new PoolMono<Laptop> (laptop,poolLaptopCnt,transform);
+        poolModem = new PoolMono<Modem>(modem,poolModemCnt,transform);
+        poolLaptop.autoExpand = autoExpand;
+        poolModem.autoExpand = autoExpand;
     }
+
     public void CreateLaptop()
     {
         if (planeMarkerPrefab.activeSelf)
-        {
-            var pos = planeMarkerPrefab.transform.position;
-            var freeLaptop = pool.GetFreeElement();
-            freeLaptop.transform.LookAt(mainCamera.transform);
-            freeLaptop.transform.eulerAngles = new Vector3(freeLaptop.transform.eulerAngles.x, 0, -90);
-            freeLaptop.transform.position = pos;
-            planeMarkerPrefab.SetActive(true);
-        }
+            PlaceObj(poolLaptop.GetFreeElement());
+    }
+
+    public void CreateModem()
+    {
+        if (planeMarkerPrefab.activeSelf)
+            PlaceObj(poolModem.GetFreeElement());
+    }
+
+    private void PlaceObj(MonoBehaviour obj)
+    {
+        var pos = planeMarkerPrefab.transform.position;
+        obj.transform.position = pos;
+        obj.transform.LookAt(mainCamera.transform);
+        obj.transform.eulerAngles = new Vector3(0, obj.transform.eulerAngles.y-180, 0);
     }
 }
