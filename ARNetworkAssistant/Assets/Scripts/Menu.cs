@@ -21,6 +21,7 @@ public class Menu : MonoBehaviour
     public void GoFirstTask() => SceneManager.LoadScene("FirstTask");
     public void GoSecondTask() => SceneManager.LoadScene("SecondTask");
     public void GoThirdTask() => SceneManager.LoadScene("ThirdTask");
+    public void WATCHAuthorsBLYAT() => SceneManager.LoadScene("Authors");
 
     public void OpenTaskPanel()
     {

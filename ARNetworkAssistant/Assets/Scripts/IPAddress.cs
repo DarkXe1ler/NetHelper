@@ -21,7 +21,7 @@ public class IPAddress : MonoBehaviour
         ipAddressText.text = ipAddress;
     }
 
-    private string GenerateRandomIPAddress()
+    public string GenerateRandomIPAddress()
     {
         int octet1 = Random.Range(1, 256);
         int octet2 = Random.Range(1, 256);

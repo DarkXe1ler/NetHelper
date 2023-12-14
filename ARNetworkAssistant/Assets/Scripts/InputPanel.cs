@@ -8,8 +8,7 @@ using UnityEngine.UI;
 public class InputPanel : MonoBehaviour
 {
     [SerializeField]
-    private GameObject panelChangetIp;
-
+    private GameObject panelChangeIP;
 
     private IPAddress currentObj;
     private TMP_InputField inputField;
@@ -49,7 +48,7 @@ public class InputPanel : MonoBehaviour
         //}
 
         currentObj.ChangeIPAddress(ipAddress);
-        panelChangetIp.SetActive(false);
+        panelChangeIP.SetActive(false);
     }
 
     private bool IsValidIpAddress(string ipAddress)
@@ -68,13 +67,27 @@ public class InputPanel : MonoBehaviour
         return false;
     }
 
-    public void ValueChanget()
+    public void ValueChanged()
     {
         inputField.textComponent.color = Color.black;
     }
 
     public void Cancel()
     {
-        panelChangetIp.SetActive(false);
+        panelChangeIP.SetActive(false);
+    }
+
+    public void DisableSelectedLaptop()
+    {
+        if (currentObj != null)
+        {
+            currentObj.gameObject.SetActive(false);
+            // Генерируем новый случайный IP адрес
+            string newIPAddress = currentObj.GenerateRandomIPAddress();
+
+            // Применяем новый IP адрес к ноутбуку
+            currentObj.ChangeIPAddress(newIPAddress);
+            panelChangeIP.SetActive(false);
+        }
     }
 }

@@ -12,6 +12,8 @@ public class FirstTaskManeger : MonoBehaviour
     private Line linePrefab;
     [SerializeField]
     private GameObject panelSuccess;
+    [SerializeField]
+    private GameObject nextLevelButton;  // Ссылка на кнопку следующего уровня
 
     private float successPanelDuration = 1f;  // Длительность отображения панели успеха
 
@@ -43,8 +45,15 @@ public class FirstTaskManeger : MonoBehaviour
             {
                 currentLaptop.gameObject.tag = "TheEnd";
 
+                // Активируем кнопку следующего уровня
+                if (nextLevelButton != null)
+                {
+                    nextLevelButton.SetActive(true);
+                }
+
                 // Показываем панель успеха
                 StartCoroutine(ShowSuccessPanel());
+
             }
         }
     }

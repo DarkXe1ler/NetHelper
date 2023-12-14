@@ -10,6 +10,7 @@ TagManager:
   - SetIp
   - TheEnd
   - Success
+  - NextLvl
   layers:
   - Default
   - TransparentFX
