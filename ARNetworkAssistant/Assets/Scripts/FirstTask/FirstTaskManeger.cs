@@ -20,8 +20,6 @@ public class FirstTaskManeger : MonoBehaviour
     private void Update()
     {
         laptops = FindObjectsOfType<Laptop>();
-        foreach (Laptop laptop in laptops)
-            laptop.gameObject.transform.GetComponent<IPAddress>().ChangeIPAddress("");
 
         // Удаляем все ранее созданные линии
         var existingLines = FindObjectsOfType<Line>();

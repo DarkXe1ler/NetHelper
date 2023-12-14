@@ -90,4 +90,13 @@ public class InputPanel : MonoBehaviour
             panelChangeIP.SetActive(false);
         }
     }
+
+    public void DisableSelectedLaptopFirstLvl()
+    {
+        if (currentObj != null)
+        {
+            currentObj.gameObject.SetActive(false);
+            panelChangeIP.SetActive(false);
+        }
+    }
 }
