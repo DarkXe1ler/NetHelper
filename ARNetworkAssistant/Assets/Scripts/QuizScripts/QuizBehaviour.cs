@@ -9,7 +9,7 @@ public class QuizBehaviour : MonoBehaviour
 {
     [SerializeField] private Button ans1, ans2, ans3, ans4, next;
     [SerializeField] private TMP_Text text;
-    //[SerializeField] private Image? img;
+    [SerializeField] private Image img;
     [SerializeField] List<Question> questions;
     private int cur, correct;
     List<int> chosenQuestions;
@@ -31,12 +31,6 @@ public class QuizBehaviour : MonoBehaviour
         next.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // можно удалить?
-    }
-
     void RandomShuffle<T>(List<T> list)
     {
         System.Random rnd = new();
@@ -56,7 +50,11 @@ public class QuizBehaviour : MonoBehaviour
         text.text = q.question;
         if (q.img != null)
         {
-            // здесь нужно вставить изображение на экран
+            img.gameObject.SetActive(true);
+            img.sprite = q.img;
+        } else
+        {
+            img.gameObject.SetActive(false);
         }
         List<string> setup = new(q.answers);
         RandomShuffle<string>(setup);
@@ -109,6 +107,7 @@ public class QuizBehaviour : MonoBehaviour
             ans2.gameObject.SetActive(false);
             ans3.gameObject.SetActive(false);
             ans4.gameObject.SetActive(false);
+            img.gameObject.SetActive(false);
             if (correct == 1) text.text = $"Тест завершён. Вы ответили правильно на {correct} вопрос из {chosenQuestions.Count}.";
             else if ((correct > 1) && (correct < 5)) text.text = $"Тест завершён. Вы ответили правильно на {correct} вопроса из {chosenQuestions.Count}.";
             else text.text = $"Тест завершён. Вы ответили правильно на {correct} вопросов из {chosenQuestions.Count}.";
@@ -121,7 +120,7 @@ public class QuizBehaviour : MonoBehaviour
         [SerializeField] public string question;
         [SerializeField] public List<string> answers; // Set the correct answer as answers[0]
         //[SerializeField] public string correct; // deprecated
-        [SerializeField] public Image img;
+        [SerializeField] public Sprite img;
 
         Question(string q, List<string> a)
         {
