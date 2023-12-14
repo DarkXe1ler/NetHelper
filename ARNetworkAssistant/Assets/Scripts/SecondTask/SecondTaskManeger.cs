@@ -94,42 +94,44 @@ public class SecondTaskManager : MonoBehaviour
                 int octet3, octet4;
                 if (int.TryParse(ipParts[2], out octet3) && int.TryParse(ipParts[3], out octet4))
                 {
-                    return octet3 >= 0 && octet3 <= 255 && octet4 >= 0 && octet4 <= 255;
-                    //if(octet3 >= 0 && octet3 <= 255 && octet4 >= 0 && octet4 <= 255)
-                    //{
-                    //    // Проверка, чтобы у каждого адреса были разные последние две цифры IP-адреса
-                    //    foreach (Laptop otherLaptop in laptops)
-                    //    {
-                    //        if(otherLaptop != CurrentLaptop)
-                    //        {
-                    //            string otherIPAddress = otherLaptop.gameObject.GetComponent<IPAddress>().IpAddressText.text;
-                    //            string[] otherIpParts = otherIPAddress.Split('.');
-                    //            if (otherIpParts.Length == 4 && otherIpParts[0] == "192" && otherIpParts[1] == "168")
-                    //            {
-                    //                int otherOctet3, otherOctet4;
-                    //                if (int.TryParse(otherIpParts[2], out otherOctet3) && int.TryParse(otherIpParts[3], out otherOctet4))
-                    //                {
-                    //                    if (otherOctet3 >= 0 && otherOctet3 <= 255 && otherOctet4 >= 0 && otherOctet4 <= 255)
-                    //                    {
-                    //                        // Проверка, чтобы у каждого адреса были разные последние две цифры IP-адреса
-                    //                        if ((octet3 == otherOctet3 && octet4 != otherOctet4) || (octet3 != otherOctet3 && octet4 == otherOctet4))
-                    //                        {
-                    //                            // Условие выполняется, если третьи или четвертые цифры разные
-                    //                            return true;
-                    //                        }
-                    //                    }
-                    //                }
-                    //            }
-                    //        }
-                    //    }
-                    //    // Пары последних цифр уникальны, возвращаем false
-                    //    return false;
-                    //}
+                    if (octet3 >= 0 && octet3 <= 255 && octet4 >= 0 && octet4 <= 255)
+                    {
+                        // Проверка, чтобы у каждого адреса были разные последние две цифры IP-адреса
+                        foreach (Laptop otherLaptop in laptops)
+                        {
+                            if (otherLaptop != CurrentLaptop)
+                            {
+                                string otherIPAddress = otherLaptop.gameObject.GetComponent<IPAddress>().IpAddressText.text;
+                                string[] otherIpParts = otherIPAddress.Split('.');
+                                if (otherIpParts.Length == 4 && otherIpParts[0] == "192" && otherIpParts[1] == "168")
+                                {
+                                    int otherOctet3, otherOctet4;
+                                    if (int.TryParse(otherIpParts[2], out otherOctet3) && int.TryParse(otherIpParts[3], out otherOctet4))
+                                    {
+                                        if (otherOctet3 >= 0 && otherOctet3 <= 255 && otherOctet4 >= 0 && otherOctet4 <= 255)
+                                        {
+                                            // Проверка, чтобы у каждого адреса были разные последние две цифры IP-адреса
+                                            if (octet3 == otherOctet3 && octet4 == otherOctet4)
+                                            {
+                                                // Условие выполняется, если третьи или четвертые цифры разные
+                                                return false;
+                                            }
+                                        }
+                                        else return false;
+                                    }
+                                    else return false;
+                                }
+                            }
+                        }
+                        // Пары последних цифр уникальны, возвращаем false
+                        return true;
+                    }
                 }
             }
         }
         return false;
     }
+
 
     // Корутина для отображения панели успеха
     private IEnumerator ShowSuccessPanel()
