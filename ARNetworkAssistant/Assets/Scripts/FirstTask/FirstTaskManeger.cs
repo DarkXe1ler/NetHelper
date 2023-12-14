@@ -10,6 +10,10 @@ public class FirstTaskManeger : MonoBehaviour
     private int maxLines = 6;
     [SerializeField]
     private Line linePrefab;
+    [SerializeField]
+    private GameObject panelSuccess;
+
+    private float successPanelDuration = 1f;  // Длительность отображения панели успеха
 
     private void Update()
     {
@@ -33,6 +37,23 @@ public class FirstTaskManeger : MonoBehaviour
             line.gameObject.SetActive(false);
             line.StretchLine(currentLaptop.transform, nextLaptop.transform);
             line.gameObject.SetActive(true);
+
+            // Проверка, что поставлен 6 ноутбук, и присвоение тега "TheEnd"
+            if (laptops.Length == maxLines)
+            {
+                currentLaptop.gameObject.tag = "TheEnd";
+
+                // Показываем панель успеха
+                StartCoroutine(ShowSuccessPanel());
+            }
         }
+    }
+
+    // Корутина для отображения панели успеха
+    private IEnumerator ShowSuccessPanel()
+    {
+        panelSuccess.SetActive(true);
+        yield return new WaitForSeconds(successPanelDuration);
+        panelSuccess.SetActive(false);
     }
 }

@@ -4,9 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - NewIP
   - Laptop
+  - Unselected
+  - Selected
   - SetIp
+  - TheEnd
+  - Success
   layers:
   - Default
   - TransparentFX

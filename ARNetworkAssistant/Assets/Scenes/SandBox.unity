@@ -1141,7 +1141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &715650202
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2099,9 +2099,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d63ff4e0413544ba787ec39be34734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolCnt: 10
+  poolLaptopCnt: 50
+  poolModemCnt: 25
   autoExpand: 0
   laptop: {fileID: 6006105146680224048, guid: 307caf29aad456346959c92e17e9ca0a, type: 3}
+  modem: {fileID: 0}
   planeMarkerPrefab: {fileID: 1812886070}
   mainCamera: {fileID: 1357929298}
 --- !u!114 &1872868127
