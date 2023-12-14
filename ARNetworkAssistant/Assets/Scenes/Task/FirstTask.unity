@@ -257,6 +257,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31830633}
   m_CullTransparentMesh: 1
+--- !u!1 &111936807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 111936808}
+  m_Layer: 0
+  m_Name: AssistantPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &111936808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111936807}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.1, y: 0, z: 0.9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1505741549}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &337929196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,7 +1569,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 111936808}
   m_Father: {fileID: 1835083123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1791909331
@@ -1690,6 +1722,7 @@ GameObject:
   - component: {fileID: 1835083122}
   - component: {fileID: 1835083124}
   - component: {fileID: 1835083128}
+  - component: {fileID: 1835083129}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -1806,6 +1839,25 @@ MonoBehaviour:
   maxLines: 6
   linePrefab: {fileID: 5370139501817327288, guid: 8f3ac641f17a5c341a761b6f5715f7e3,
     type: 3}
+--- !u!114 &1835083129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835083121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8df06169a0e59b47b650d1956c6ca4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ARCamera: {fileID: 1505741544}
+  AssistantPrefab: {fileID: 1390345098542883253, guid: e4286d33a2c8dbd43ac52e869dd12b8c,
+    type: 3}
+  AssistantPosition: {fileID: 111936808}
+  Scroll: {fileID: 2109184255}
+  videCl: {fileID: 32900000, guid: fd4b398b56baddc4d9685a11516abaf6, type: 3}
+  SecondsVideo: 15
 --- !u!1 &1895677744
 GameObject:
   m_ObjectHideFlags: 0
