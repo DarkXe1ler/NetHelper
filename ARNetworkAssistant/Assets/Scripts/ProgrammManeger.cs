@@ -11,8 +11,11 @@ public class ProgrammManeger : MonoBehaviour
     private GameObject planeMarkerPrefab;
     [SerializeField]
     private Camera ARCamera;
-
     private ARRaycastManager ARRaycastManagerScript;
+
+    private Vector2 TouchPosition;
+    List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    private GameObject SelectedObject;
 
     void Start()
     {
@@ -23,6 +26,8 @@ public class ProgrammManeger : MonoBehaviour
     void Update()
     {
         ShowMarker();
+
+        MoveObject();
     }
 
     private void ShowMarker()
@@ -38,6 +43,41 @@ public class ProgrammManeger : MonoBehaviour
         else
         {
             planeMarkerPrefab.SetActive(false);
+        }
+    }
+
+    void MoveObject()
+    {
+        if(Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            TouchPosition = touch.position;
+            if(touch.phase == TouchPhase.Began)
+            {
+                Ray ray = ARCamera.ScreenPointToRay(touch.position);
+                RaycastHit hitObject;
+
+                if(Physics.Raycast(ray, out hitObject))
+                {
+                    if (hitObject.collider.CompareTag("Unselected"))
+                    {
+                        hitObject.collider.gameObject.tag = "Selected";
+                    }
+                }
+            }
+            if (touch.phase == TouchPhase.Moved)
+            {
+                ARRaycastManagerScript.Raycast(TouchPosition,hits, TrackableType.Planes);
+                SelectedObject = GameObject.FindWithTag("Selected");
+                SelectedObject.transform.position = hits[0].pose.position;
+            }
+            if(touch.phase == TouchPhase.Ended)
+            {
+                if (SelectedObject.CompareTag("Selected"))
+                {
+                    SelectedObject.tag = "Unselected";
+                }
+            }
         }
     }
 }

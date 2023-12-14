@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SecondTaskManeger : MonoBehaviour
+public class SecondTaskManager : MonoBehaviour
 {
     [SerializeField]
     private Laptop[] laptops;
@@ -10,9 +9,12 @@ public class SecondTaskManeger : MonoBehaviour
     private Modem modem;
     [SerializeField]
     private Line linePrefab;
+    [SerializeField]
+    private GameObject panelSuccess;
 
     private int generatedLinesCount = 0;  // Счетчик сгенерированных линий
     private int maxLines = 6;  // Максимальное количество линий
+    private float successPanelDuration = 1f;  // Длительность отображения панели успеха
 
     private void Update()
     {
@@ -28,6 +30,7 @@ public class SecondTaskManeger : MonoBehaviour
         }
 
         // Создаем линии от каждого ноутбука к модему и проверяем IP адреса
+        bool allLaptopsPassedCheck = true;
         foreach (Laptop laptop in laptops)
         {
             if (modem != null)  // Проверяем, что модем существует
@@ -41,14 +44,28 @@ public class SecondTaskManeger : MonoBehaviour
 
                     generatedLinesCount++;
                 }
+                else
+                {
+                    // Если хотя бы один ноутбук не прошел проверку, устанавливаем флаг в false
+                    allLaptopsPassedCheck = false;
+                }
             }
         }
 
-        // Проверяем, достигли ли максимального количества линий
-        if (generatedLinesCount >= maxLines)
+        // Проверяем, достигли ли максимального количества линий и все ли ноутбуки прошли проверку
+        if (generatedLinesCount >= maxLines && allLaptopsPassedCheck)
         {
             // Останавливаем генерацию линий
             enabled = false;
+
+            // Меняем тег на "TheEnd" для всех ноутбуков
+            foreach (Laptop laptop in laptops)
+            {
+                laptop.gameObject.tag = "TheEnd";
+            }
+
+            // Показываем панель успеха
+            StartCoroutine(ShowSuccessPanel());
         }
     }
 
@@ -71,5 +88,13 @@ public class SecondTaskManeger : MonoBehaviour
             }
         }
         return false;
+    }
+
+    // Корутина для отображения панели успеха
+    private IEnumerator ShowSuccessPanel()
+    {
+        panelSuccess.SetActive(true);
+        yield return new WaitForSeconds(successPanelDuration);
+        panelSuccess.SetActive(false);
     }
 }

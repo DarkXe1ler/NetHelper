@@ -1106,7 +1106,7 @@ GameObject:
   - component: {fileID: 1410702986}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: NewIP
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

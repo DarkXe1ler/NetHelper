@@ -60,7 +60,7 @@ public class SkriptSetIp : MonoBehaviour
         RaycastHit raycastHit;
         if (Physics.Raycast(ray, out raycastHit))
         {
-            if (raycastHit.collider.CompareTag("SetIp"))
+            if (raycastHit.collider.CompareTag("Unselected") || raycastHit.collider.CompareTag("Selected"))
             {
                 if (InputPanel != null)
                 {
