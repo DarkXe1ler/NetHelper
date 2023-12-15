@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: d9d63ff4e0413544ba787ec39be34734
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - laptopPrefab: {instanceID: 0}
+  - planeMarkerPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
