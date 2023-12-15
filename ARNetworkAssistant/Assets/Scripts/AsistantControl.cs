@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.Video;
@@ -12,6 +13,8 @@ public class AsistantControl : MonoBehaviour
     private GameObject ARCamera;
     [SerializeField]
     private GameObject AssistantPrefab;
+    [SerializeField]
+    private GameObject SkipBtn;
 
     private GameObject Assistant;
     private GameObject EndPoint;
@@ -30,13 +33,18 @@ public class AsistantControl : MonoBehaviour
     private delegate void MoveRobot();
     private MoveRobot moveRobot;
 
+    [SerializeField]
+    bool isTheeScen = false;
+
+
+    VideoPlayer player;
 
     void Start()
     {
-        Assistant = Instantiate(AssistantPrefab, ARCamera.transform.position + new Vector3(4f, 0, 0), ARCamera.transform.rotation);
+        Assistant = Instantiate(AssistantPrefab, ARCamera.transform.position + new Vector3(2f, 0, 0), ARCamera.transform.rotation);
         EndPoint = new GameObject("EmptyObject");
         EndPoint.transform.position = Assistant.transform.position;
-        VideoPlayer player = Assistant.GetComponent<VideoPlayer>();
+        player = Assistant.GetComponent<VideoPlayer>();
         player.clip = videCl;
         Scroll.SetActive(false);
         moveRobot += MoveRobotCamera;
@@ -50,7 +58,7 @@ public class AsistantControl : MonoBehaviour
 
     private void MoveRobotCamera()
     {
-        if (CheckDist(Assistant.transform.position, AssistantPosition.transform.position) >= 0.1f)
+        if (CheckDist(Assistant.transform.position, AssistantPosition.transform.position) >= 0.01f)
         {
             MoveObjToPos(AssistantPosition.position);
         }
@@ -59,15 +67,13 @@ public class AsistantControl : MonoBehaviour
 
     private void MoveEnd()
     {
-        if(CheckDist(Assistant.transform.position, EndPoint.transform.position) > 0.1f)
+        if(CheckDist(Assistant.transform.position, EndPoint.transform.position) > 0.01f)
         {
             MoveObjToPos(EndPoint.transform.position);
             Assistant.transform.LookAt(ARCamera.transform);
         }
         else 
             Assistant.SetActive(false);
-
-
     }
 
     public float CheckDist(Vector3 posObjFirst, Vector3 posObjSecond)
@@ -81,11 +87,26 @@ public class AsistantControl : MonoBehaviour
         Assistant.transform.position = Vector3.Lerp(Assistant.transform.position, pos, 1f * Time.deltaTime);
     }
 
+    public void Skip()
+    {
+        moveRobot -= MoveRobotCamera;
+        moveRobot += MoveEnd;
+        player.Stop();
+        SkipBtn.SetActive(false);
+        if(!isTheeScen)
+            Scroll.SetActive(true);
+        else
+            SceneManager.LoadScene("Quiz");
+    }
+
     private IEnumerator CoroutineSample()
     {
         yield return new WaitForSeconds(SecondsVideo);
         moveRobot -= MoveRobotCamera;
         moveRobot += MoveEnd;
-        Scroll.SetActive(true);
+        if (!isTheeScen)
+            Scroll.SetActive(true);
+        else
+            SceneManager.LoadScene("Quiz");
     }
 }

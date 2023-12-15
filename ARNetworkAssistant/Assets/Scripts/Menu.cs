@@ -10,6 +10,8 @@ public class Menu : MonoBehaviour
     private GameObject MenuPanel;
     [SerializeField]
     private GameObject TaskPanel;
+    [SerializeField]
+    private GameObject AboutPanel;
 
 
     public void Next() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -19,9 +21,10 @@ public class Menu : MonoBehaviour
     public void OpenMainMenu() => SceneManager.LoadScene("MainMenu");
 
     public void GoFirstTask() => SceneManager.LoadScene("FirstTask");
+
     public void GoSecondTask() => SceneManager.LoadScene("SecondTask");
-    public void GoThirdTask() => SceneManager.LoadScene("ThirdTask");
-    public void WATCHAuthorsBLYAT() => SceneManager.LoadScene("Authors");
+
+    public void GoQuizPanel() => SceneManager.LoadScene("ThreeTask");
 
     public void OpenTaskPanel()
     {
@@ -33,5 +36,17 @@ public class Menu : MonoBehaviour
     {
         MenuPanel.SetActive(true);
         TaskPanel.SetActive(false);
+    }
+
+    public void OpenAboutPanel()
+    {
+        MenuPanel.SetActive(false);
+        AboutPanel.SetActive(true);
+    }
+
+    public void CloseAboutPanel()
+    {
+        MenuPanel.SetActive(true);
+        AboutPanel.SetActive(false);
     }
 }
