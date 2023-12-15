@@ -23,10 +23,10 @@ public class IPAddress : MonoBehaviour
 
     public string GenerateRandomIPAddress()
     {
-        int octet1 = Random.Range(1, 256);
-        int octet2 = Random.Range(1, 256);
-        int octet3 = Random.Range(1, 256);
-        int octet4 = Random.Range(1, 256);
+        int octet1 = Random.Range(0, 256);
+        int octet2 = Random.Range(0, 256);
+        int octet3 = Random.Range(0, 256);
+        int octet4 = Random.Range(0, 256);
 
         string ipAddress = $"{octet1}.{octet2}.{octet3}.{octet4}";
 
