@@ -34,7 +34,7 @@ public class FirstTaskManeger : MonoBehaviour
             Laptop nextLaptop = (i < laptops.Length - 1) ? laptops[i + 1] : laptops[0]; // Если текущий не последний, то следующий - следующий в массиве, иначе - первый
 
             Line line = Instantiate(linePrefab, transform);
-            line.gameObject.SetActive(false);
+            //line.gameObject.SetActive(false);
             line.StretchLine(currentLaptop.transform, nextLaptop.transform);
             line.gameObject.SetActive(true);
 
