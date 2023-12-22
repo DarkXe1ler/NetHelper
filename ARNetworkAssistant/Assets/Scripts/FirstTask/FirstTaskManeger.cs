@@ -36,7 +36,7 @@ public class FirstTaskManeger : MonoBehaviour
             Line line = Instantiate(linePrefab, transform);
             //line.gameObject.SetActive(false);
             line.StretchLine(currentLaptop.transform, nextLaptop.transform);
-            line.gameObject.SetActive(true);
+            //line.gameObject.SetActive(true);
 
             // Проверка, что поставлен 6 ноутбук, и присвоение тега "TheEnd"
             if (laptops.Length == maxLines)
