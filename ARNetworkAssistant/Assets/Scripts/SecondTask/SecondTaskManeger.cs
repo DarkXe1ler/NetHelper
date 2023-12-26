@@ -95,9 +95,9 @@ public class SecondTaskManager : MonoBehaviour
 
     private bool CheckIPAddres(string[] arr, string firstByte, string secondByte)
     {
-        return arr.Length == 4 && arr[0] == firstByte && 
-               arr[1] == secondByte && int.Parse(arr[2]) >= 0 && 
-               int.Parse(arr[2]) <= 255 && int.Parse(arr[3]) >= 0 && int.Parse(arr[3]) <= 255;
+        return arr.Length == 4 && 
+               arr[0] == firstByte &&  arr[1] == secondByte && 
+               int.Parse(arr[2]) >= 0 && int.Parse(arr[2]) <= 255 && int.Parse(arr[3]) >= 0 && int.Parse(arr[3]) <= 255;
     }
 
     private IEnumerator ShowSuccessPanel()
