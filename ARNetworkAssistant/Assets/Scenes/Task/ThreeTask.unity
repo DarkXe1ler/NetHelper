@@ -3658,8 +3658,6 @@ GameObject:
   - component: {fileID: 1911350237}
   - component: {fileID: 1911350236}
   - component: {fileID: 1911350235}
-  - component: {fileID: 1911350234}
-  - component: {fileID: 1911350240}
   m_Layer: 5
   m_Name: 'Canvas '
   m_TagString: Untagged
@@ -3667,18 +3665,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1911350234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1911350233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc54086ba26b14b4aae5c81d5fa568dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1911350235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3691,9 +3677,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ed9c4a3ae4cbb40af9faa10654725b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuPanel: {fileID: 0}
-  TaskPanel: {fileID: 0}
-  AboutPanel: {fileID: 0}
+  MenuPanel: {fileID: 1911350233}
+  TaskPanel: {fileID: 1911350233}
+  AboutPanel: {fileID: 1911350233}
 --- !u!114 &1911350236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3782,19 +3768,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1911350240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1911350233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 354576fab0dcea14496416494ae8b45f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelChangeIP: {fileID: 829073086}
 --- !u!1 &1973442912
 GameObject:
   m_ObjectHideFlags: 0
