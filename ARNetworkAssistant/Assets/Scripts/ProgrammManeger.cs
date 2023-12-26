@@ -26,7 +26,6 @@ public class ProgrammManeger : MonoBehaviour
     void Update()
     {
         ShowMarker();
-
         MoveObject();
     }
 

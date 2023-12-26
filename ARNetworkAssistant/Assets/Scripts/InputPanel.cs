@@ -41,12 +41,6 @@ public class InputPanel : MonoBehaviour
             return;
         }
 
-        //if (IsReservedIpAddress(ipAddress))
-        //{
-        //    Debug.LogError("Reserved IP address. Choose a different one.");
-        //    return;
-        //}
-
         currentObj.ChangeIPAddress(ipAddress);
         panelChangeIP.SetActive(false);
     }
@@ -55,16 +49,6 @@ public class InputPanel : MonoBehaviour
     {
         string pattern = @"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b";
         return Regex.IsMatch(ipAddress, pattern);
-    }
-
-    private bool IsReservedIpAddress(string ipAddress)
-    {
-        if (ipAddress == "127.0.0.1" || ipAddress.ToLower() == "localhost")
-        {
-            return true;
-        }
-
-        return false;
     }
 
     public void ValueChanged()
@@ -82,10 +66,8 @@ public class InputPanel : MonoBehaviour
         if (currentObj != null)
         {
             currentObj.gameObject.SetActive(false);
-            // Генерируем новый случайный IP адрес
             string newIPAddress = currentObj.GenerateRandomIPAddress();
 
-            // Применяем новый IP адрес к ноутбуку
             currentObj.ChangeIPAddress(newIPAddress);
             panelChangeIP.SetActive(false);
         }

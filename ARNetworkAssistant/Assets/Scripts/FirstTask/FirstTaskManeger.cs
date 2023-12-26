@@ -21,7 +21,6 @@ public class FirstTaskManeger : MonoBehaviour
     {
         laptops = FindObjectsOfType<Laptop>();
 
-        // Удаляем все ранее созданные линии
         var existingLines = FindObjectsOfType<Line>();
         foreach (var line in existingLines)
         {
@@ -34,29 +33,23 @@ public class FirstTaskManeger : MonoBehaviour
             Laptop nextLaptop = (i < laptops.Length - 1) ? laptops[i + 1] : laptops[0]; // Если текущий не последний, то следующий - следующий в массиве, иначе - первый
 
             Line line = Instantiate(linePrefab, transform);
-            //line.gameObject.SetActive(false);
             line.StretchLine(currentLaptop.transform, nextLaptop.transform);
-            //line.gameObject.SetActive(true);
 
-            // Проверка, что поставлен 6 ноутбук, и присвоение тега "TheEnd"
             if (laptops.Length == maxLines)
             {
                 currentLaptop.gameObject.tag = "TheEnd";
 
-                // Активируем кнопку следующего уровня
                 if (nextLevelButton != null)
                 {
                     nextLevelButton.SetActive(true);
                 }
 
-                // Показываем панель успеха
                 StartCoroutine(ShowSuccessPanel());
 
             }
         }
     }
 
-    // Корутина для отображения панели успеха
     private IEnumerator ShowSuccessPanel()
     {
         panelSuccess.SetActive(true);

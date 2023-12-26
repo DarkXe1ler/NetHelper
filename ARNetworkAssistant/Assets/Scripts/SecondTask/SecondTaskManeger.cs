@@ -23,7 +23,6 @@ public class SecondTaskManager : MonoBehaviour
         modem = FindObjectOfType<Modem>();
         laptops = FindObjectsOfType<Laptop>();
 
-        // Удаляем все ранее созданные линии
         var existingLines = FindObjectsOfType<Line>();
         foreach (var line in existingLines)
         {
@@ -31,57 +30,46 @@ public class SecondTaskManager : MonoBehaviour
             Destroy(line.gameObject);
         }
 
-        // Создаем линии от каждого ноутбука к модему и проверяем IP адреса
         bool allLaptopsPassedCheck = true;
         foreach (Laptop laptop in laptops)
         {
-            //CurrentLaptop = laptop;
-            if (modem != null)  // Проверяем, что модем существует
+            if (modem != null)
             {
-                if (CheckIPAddress(/*CurrentLaptop*/ laptop, laptop.gameObject.GetComponent<IPAddress>().IpAddressText.text))
+                if (CheckIPAddress(laptop, laptop.gameObject.GetComponent<IPAddress>().IpAddressText.text))
                 {
                     Line line = Instantiate(linePrefab, transform);
-                    //line.gameObject.SetActive(false);
                     line.StretchLine(modem.transform, laptop.transform);
-                    //line.gameObject.SetActive(true);
-
                     generatedLinesCount++;
                 }
                 else
                 {
-                    // Если хотя бы один ноутбук не прошел проверку, устанавливаем флаг в false
                     allLaptopsPassedCheck = false;
                 }
             }
         }
 
-        // Проверяем, достигли ли максимального количества линий и все ли ноутбуки прошли проверку
         if (generatedLinesCount >= maxLines && allLaptopsPassedCheck)
         {
-            // Останавливаем генерацию линий
             enabled = false;
 
-            // Меняем тег на "TheEnd" для всех ноутбуков
             foreach (Laptop laptop in laptops)
             {
                 laptop.gameObject.tag = "TheEnd";
             }
             modem.gameObject.tag = "TheEnd";
 
-            // Активируем кнопку следующего уровня
             if (nextLevelButton != null)
             {
                 nextLevelButton.SetActive(true);
             }
 
-            // Показываем панель успеха
             StartCoroutine(ShowSuccessPanel());
         }
     }
 
-    // Метод для проверки IP адреса
     private bool CheckIPAddress(Laptop currentLaptop, string ipAddress)
     {
+
         string[] ipParts = ipAddress.Split('.');
         if (CheckIPAddres(ipParts, "192", "168"))
         {
@@ -112,8 +100,6 @@ public class SecondTaskManager : MonoBehaviour
                int.Parse(arr[2]) <= 255 && int.Parse(arr[3]) >= 0 && int.Parse(arr[3]) <= 255;
     }
 
-
-    // Корутина для отображения панели успеха
     private IEnumerator ShowSuccessPanel()
     {
         panelSuccess.SetActive(true);
