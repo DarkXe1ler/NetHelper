@@ -17,6 +17,16 @@ public class FirstTaskManeger : MonoBehaviour
 
     private float successPanelDuration = 1f;  // Длительность отображения панели успеха
 
+    private PoolMono<Line> linePoolMono;
+
+    private bool final;
+
+    private void Start()
+    {
+        linePoolMono = new(linePrefab,maxLines,transform);
+        linePoolMono.autoExpand = false;
+    }
+
     private void Update()
     {
         laptops = FindObjectsOfType<Laptop>();
@@ -24,7 +34,8 @@ public class FirstTaskManeger : MonoBehaviour
         var existingLines = FindObjectsOfType<Line>();
         foreach (var line in existingLines)
         {
-            Destroy(line.gameObject);
+            //Destroy(line.gameObject);
+            line.gameObject.SetActive(false);
         }
 
         for (int i = 0; i < laptops.Length; i++)
@@ -32,12 +43,14 @@ public class FirstTaskManeger : MonoBehaviour
             Laptop currentLaptop = laptops[i];
             Laptop nextLaptop = (i < laptops.Length - 1) ? laptops[i + 1] : laptops[0]; // Если текущий не последний, то следующий - следующий в массиве, иначе - первый
 
-            Line line = Instantiate(linePrefab, transform);
+            //Line line = Instantiate(linePrefab, transform);
+            Line line = linePoolMono.GetFreeElement();
             line.StretchLine(currentLaptop.transform, nextLaptop.transform);
 
-            if (laptops.Length == maxLines)
+            if (laptops.Length == maxLines && !final)
             {
                 currentLaptop.gameObject.tag = "TheEnd";
+                final = true;
 
                 if (nextLevelButton != null)
                 {
