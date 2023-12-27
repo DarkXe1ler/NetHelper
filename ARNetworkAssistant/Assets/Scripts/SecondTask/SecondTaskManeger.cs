@@ -18,6 +18,14 @@ public class SecondTaskManager : MonoBehaviour
     private int maxLines = 6;  // ћаксимальное количество линий
     private float successPanelDuration = 1f;  // ƒлительность отображени€ панели успеха
 
+    private PoolMono<Line> linePoolMono;
+
+    private void Start()
+    {
+        linePoolMono = new(linePrefab, maxLines, transform);
+        linePoolMono.autoExpand = false;
+    }
+
     private void Update()
     {
         modem = FindObjectOfType<Modem>();
@@ -27,7 +35,8 @@ public class SecondTaskManager : MonoBehaviour
         foreach (var line in existingLines)
         {
             generatedLinesCount = 0;
-            Destroy(line.gameObject);
+            //Destroy(line.gameObject);
+            line.gameObject.SetActive(false);
         }
 
         bool allLaptopsPassedCheck = true;
@@ -37,7 +46,8 @@ public class SecondTaskManager : MonoBehaviour
             {
                 if (CheckIPAddress(laptop, laptop.gameObject.GetComponent<IPAddress>().IpAddressText.text))
                 {
-                    Line line = Instantiate(linePrefab, transform);
+                    //Line line = Instantiate(linePrefab, transform);
+                    Line line = linePoolMono.GetFreeElement();
                     line.StretchLine(modem.transform, laptop.transform);
                     generatedLinesCount++;
                 }
